@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kings of the Bible Explorer</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="topbar" aria-label="Main navigation">
+      <a href="#explorer">Explorer</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#map">Map</a>
+      <a href="#compare">Compare</a>
+      <a href="#learn">Learn</a>
+    </nav>
+    <div class="hero-grid">
+      <section>
+        <p class="eyebrow">Bible learning made visual</p>
+        <h1>Kings of the Bible Explorer</h1>
+        <p class="lede">A colorful, searchable guide to the kings of United Israel, Judah, Israel, and major foreign rulers who appear in the Bible story.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#explorer">Start exploring</a>
+          <button class="button" id="randomKing">Surprise me</button>
+        </div>
+      </section>
+      <aside class="stat-card" aria-live="polite">
+        <span id="kingCount">0</span>
+        <p>king profiles</p>
+        <small>Every profile includes Bible references so students can verify the story in Scripture.</small>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="explorer" class="panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">Search & filter</p><h2>Find a king by name, kingdom, Bible book, region, or lesson</h2></div>
+        <strong id="resultCount" class="result-count">0 shown</strong>
+      </div>
+      <div class="controls">
+        <label>Search <input id="search" type="search" placeholder="David, Samaria, Daniel, prayer..." /></label>
+        <label>Kingdom <select id="kingdomFilter"><option value="all">All kingdoms</option></select></label>
+        <label>Era <select id="eraFilter"><option value="all">All eras</option></select></label>
+        <label>Status <select id="statusFilter"><option value="all">All statuses</option></select></label>
+        <label>Sort <select id="sort"><option value="year">Timeline order</option><option value="name">Name A–Z</option><option value="kingdom">Kingdom</option><option value="status">Status</option></select></label>
+        <button class="button slim" id="clearFilters">Clear</button>
+      </div>
+      <div class="layout">
+        <div id="cards" class="cards" aria-label="King cards"></div>
+        <article id="detail" class="detail" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section id="timeline" class="panel accent">
+      <div class="section-heading"><div><p class="eyebrow">Big picture</p><h2>See how reigns overlap from Saul to Persia</h2></div></div>
+      <div class="timeline-scale"><span>Earlier</span><span>Later</span></div>
+      <div id="timelineTrack" class="timeline-track"></div>
+    </section>
+
+    <section id="map" class="panel map-panel">
+      <div class="section-heading"><div><p class="eyebrow">Geography</p><h2>Tap a region to filter the explorer</h2></div></div>
+      <div class="map-wrap">
+        <svg viewBox="0 0 720 490" role="img" aria-labelledby="mapTitle mapDesc" class="bible-map">
+          <title id="mapTitle">Stylized classroom map of Bible kingdoms</title>
+          <desc id="mapDesc">A simplified classroom map showing Assyria, Babylon, Persia, Israel, Judah, Egypt, Aram, and Moab.</desc>
+          <rect width="720" height="490" rx="28" fill="#d9f3ff" />
+          <path d="M112 28c26 80 17 143-11 199-30 60-14 128 37 214" class="river" />
+          <path d="M225 50c105 0 214 28 318 99 52 36 92 75 130 119l-36 147c-111-20-197-12-276 17-79 28-156 22-225-18-12-90-4-169 24-242 18-48 39-86 65-122z" fill="#f7df9e" />
+          <g id="mapRegions"></g>
+        </svg>
+        <div id="mapLegend" class="legend"></div>
+      </div>
+    </section>
+
+    <section id="compare" class="panel compare-panel">
+      <div><p class="eyebrow">Compare</p><h2>Keep up to three kings side by side</h2><p>Open a king profile and choose “Add to compare.”</p></div>
+      <div id="compareTray" class="compare-tray"></div>
+    </section>
+
+    <section id="learn" class="panel learn-grid">
+      <article><h2>How to use this site</h2><ol><li>Pick a card and read the short story.</li><li>Check the Bible references in your Bible.</li><li>Compare choices using the status badge and “Remember this” lesson.</li><li>Use the map and timeline to connect people, places, and events.</li></ol></article>
+      <article><h2>Accuracy note</h2><p>This is a Bible-first learning tool. Ancient dates are shown as approximate when historians differ, while names, sequence, and story summaries point back to the listed Scripture references.</p></article>
+      <article><h2>Status badges</h2><p><strong>Good</strong> means the biblical narrative broadly commends the king. <strong>Bad</strong> marks kings described as doing evil. <strong>Mixed</strong> identifies complicated stories with both faithfulness and failure. <strong>Foreign</strong> marks non-Israelite rulers.</p></article>
+    </section>
+  </main>
+
+  <dialog id="quizDialog">
+    <form method="dialog">
+      <h2>Quick Check</h2>
+      <p id="quizQuestion"></p>
+      <menu><button id="quizAnswer" value="default">Show answer</button><button value="close">Close</button></menu>
+      <p id="quizResult"></p>
+    </form>
+  </dialog>
+  <footer>Built for curious students, teachers, and families. Open your Bible and verify every story.</footer>
+  <script src="src/data.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
