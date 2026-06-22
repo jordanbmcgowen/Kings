@@ -148,3 +148,9 @@ footer { text-align: center; color: var(--muted); padding: 35px; }
 .popup-facts strong { display: block; color: #ffd36b; }
 .popup-facts span { display: block; margin-top: 5px; }
 @media (max-width: 620px) { .popup-facts { grid-template-columns: 1fr; } }
+.map-note { margin-top: -8px; color: var(--muted); font-weight: 800; }
+.accurate-map-wrap { grid-template-columns: minmax(0, 1fr) 280px; }
+.accurate-map { min-height: 560px; border-radius: 28px; overflow: hidden; border: 1px solid var(--line); box-shadow: inset 0 0 0 1px rgba(255,255,255,.45); background: #dbeafe; }
+.leaflet-container { font-family: inherit; }
+.legend small { display: block; color: var(--muted); font-weight: 700; margin-left: 22px; margin-top: 3px; line-height: 1.25; }
+@media (max-width: 620px) { .accurate-map { min-height: 430px; } }

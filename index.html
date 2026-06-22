@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kings of the Bible Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="src/styles.css" />
 </head>
 <body>
@@ -61,36 +62,9 @@
 
     <section id="map" class="panel map-panel">
       <div class="section-heading"><div><p class="eyebrow">Geography</p><h2>Tap a region to filter the explorer</h2></div></div>
-      <div class="map-wrap">
-        <svg viewBox="0 0 900 610" role="img" aria-labelledby="mapTitle mapDesc" class="bible-map">
-          <title id="mapTitle">Classroom map of Bible lands</title>
-          <desc id="mapDesc">A stylized but geography-inspired map of the eastern Mediterranean, Nile delta, Israel, Judah, Aram, Assyria, Babylon, and Persia.</desc>
-          <defs>
-            <linearGradient id="seaGradient" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#2563eb"/></linearGradient>
-            <linearGradient id="landGradient" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f7e2aa"/><stop offset="1" stop-color="#d6a85f"/></linearGradient>
-            <filter id="mapShadow"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#17213d" flood-opacity=".22"/></filter>
-          </defs>
-          <rect width="900" height="610" rx="30" fill="url(#seaGradient)" />
-          <path class="coast-glow" d="M318 42c-44 41-63 88-63 133 0 38 15 67 7 100-8 35-43 59-50 99-8 48 27 94 18 157-3 21-11 40-22 58H900V0H365c-17 14-32 28-47 42z" />
-          <path class="land" d="M349 0h551v610H208c16-33 28-67 25-105-4-53-30-88-24-126 7-42 42-67 51-105 8-34-7-63-7-100 0-62 38-123 96-174z" />
-          <path class="sinai" d="M206 407 318 369 356 513 238 589c8-58-23-110-32-182z" />
-          <path class="desert" d="M520 70c111 39 171 104 243 193 48 59 89 136 111 224" />
-          <path class="desert" d="M450 546c98-87 187-111 345-89" />
-          <path class="river nile" d="M132 610c18-84 30-138 64-202 20-38 33-70 38-110" />
-          <path class="river euphrates" d="M547 0c-31 55-37 107-3 150 29 36 76 51 95 91 25 53-8 102 24 154 20 33 63 58 112 76" />
-          <path class="river tigris" d="M663 0c-37 52-39 100-14 143 22 39 58 64 68 111 9 43-8 88 10 130 13 31 43 55 78 72" />
-          <ellipse class="water" cx="327" cy="245" rx="15" ry="30" />
-          <path class="water" d="M335 305c24 33 22 76-2 99-27-20-33-66 2-99z" />
-          <path class="route" d="M319 222c42-45 99-77 168-95 83-21 160-9 232 30" />
-          <path class="route" d="M338 358c70-6 150 14 236 55 75 35 137 42 218 33" />
-          <g id="mapRegions"></g>
-          <g class="map-labels" aria-hidden="true">
-            <text x="109" y="144">Mediterranean Sea</text>
-            <text x="117" y="469">Egypt</text>
-            <text x="329" y="286">Jordan River</text>
-            <text x="742" y="406">Persian Gulf</text>
-          </g>
-        </svg>
+      <p class="map-note">This uses a real latitude/longitude web map for the geography. Ancient kingdom areas are shown as learning zones because exact borders changed and are debated.</p>
+      <div class="map-wrap accurate-map-wrap">
+        <div id="accurateMap" class="accurate-map" role="application" aria-label="Accurate map of Bible lands with clickable king regions"></div>
         <div id="mapLegend" class="legend"></div>
       </div>
     </section>
@@ -124,6 +98,7 @@
     </form>
   </dialog>
   <footer>Built for curious students, teachers, and families. Open your Bible and verify every story.</footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="src/data.js"></script>
   <script src="src/app.js"></script>
 </body>
