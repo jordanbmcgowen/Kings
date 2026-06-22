@@ -95,11 +95,21 @@ input, select { width: 100%; margin-top: 6px; border: 2px solid var(--line); bor
 .timeline-row i { position: absolute; left: 190px; right: 130px; height: 18px; border-radius: 999px; box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); }
 .timeline-row small { text-align: right; color: var(--muted); font-weight: 800; }
 .map-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 20px; align-items: start; }
-.bible-map { width: 100%; border-radius: 28px; }
-.river { fill: none; stroke: #3a86ff; stroke-width: 22; stroke-linecap: round; opacity: .65; }
-.region { cursor: pointer; stroke: #fff; stroke-width: 4; filter: drop-shadow(0 5px 4px rgba(0,0,0,.12)); transition: .2s; }
-.region:hover, .region:focus { opacity: .82; transform: translateY(-2px); outline: none; }
-.region text { fill: white; font-weight: 950; pointer-events: none; }
+.bible-map { width: 100%; border-radius: 28px; background: #7dd3fc; box-shadow: inset 0 0 0 1px rgba(255,255,255,.45); }
+.land, .sinai { fill: url(#landGradient); filter: url(#mapShadow); }
+.coast-glow { fill: #f8e7b9; opacity: .86; }
+.desert { fill: none; stroke: rgba(125, 82, 31, .28); stroke-width: 2; stroke-dasharray: 9 13; }
+.river { fill: none; stroke: #38bdf8; stroke-linecap: round; opacity: .8; }
+.nile { stroke-width: 12; }
+.euphrates, .tigris { stroke-width: 8; }
+.water { fill: #1d4ed8; opacity: .86; stroke: #dff8ff; stroke-width: 3; }
+.route { fill: none; stroke: rgba(91, 64, 32, .35); stroke-width: 3; stroke-dasharray: 7 8; }
+.map-labels text { fill: rgba(23, 33, 61, .55); font-size: 18px; font-weight: 900; font-style: italic; }
+.region { cursor: pointer; stroke: #fff; stroke-width: 4; filter: drop-shadow(0 6px 5px rgba(0,0,0,.18)); transition: .2s; }
+.region path { opacity: .82; }
+.region:hover, .region:focus { opacity: .9; transform: translateY(-3px); outline: none; }
+.region:hover path, .region:focus path { opacity: 1; }
+.region text { fill: white; font-weight: 950; font-size: 19px; paint-order: stroke; stroke: rgba(23,33,61,.55); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
 .legend button { display: flex; gap: 8px; align-items: center; width: 100%; margin: 7px 0; border: 0; border-radius: 14px; padding: 10px; text-align: left; background: #eef4ff; font-weight: 900; cursor: pointer; }
 .legend span { width: 14px; height: 14px; border-radius: 4px; }
 .compare-panel { display: grid; grid-template-columns: .9fr 1.4fr; gap: 22px; align-items: start; }

@@ -105,18 +105,22 @@ function renderTimeline(list) {
 
 function renderMap() {
   const regions = [
-    ['Assyria', 430, 65, 190, 90, '#8e44ad'], ['Babylon', 455, 220, 155, 95, '#e67e22'],
-    ['Persia', 585, 295, 95, 120, '#16a085'], ['Israel', 260, 174, 75, 86, '#3867d6'],
-    ['Judah', 262, 278, 74, 66, '#f7b731'], ['Egypt', 55, 310, 160, 105, '#c0392b'],
-    ['Aram', 318, 92, 90, 76, '#20bf6b'], ['Moab', 350, 286, 62, 56, '#795548']
+    { name: 'Egypt', color: '#c0392b', label: [150, 438], d: 'M58 420c45-36 103-48 171-36 11 55 20 103 12 173H44c8-47 7-89 14-137z' },
+    { name: 'Judah', color: '#f7b731', label: [325, 392], d: 'M300 343c21 5 39 15 50 32-3 24-14 49-32 72-25-13-45-31-57-54 15-20 26-37 39-50z' },
+    { name: 'Israel', color: '#3867d6', label: [324, 281], d: 'M296 206c31 8 55 26 69 54-9 37-30 66-65 86-25-22-30-61-20-94 4-15 9-30 16-46z' },
+    { name: 'Moab', color: '#795548', label: [391, 386], d: 'M368 330c42 12 63 43 64 88-20 18-43 28-72 30 7-34 11-73 8-118z' },
+    { name: 'Aram', color: '#20bf6b', label: [414, 196], d: 'M352 118c59-8 111 5 157 39-9 47-36 82-84 108-20-33-48-59-84-76 0-24 4-47 11-71z' },
+    { name: 'Assyria', color: '#8e44ad', label: [630, 126], d: 'M510 33c114 8 215 43 303 105-15 59-51 104-111 134-55-52-116-87-183-105-18-39-21-83-9-134z' },
+    { name: 'Babylon', color: '#e67e22', label: [642, 332], d: 'M536 257c88 9 158 46 211 110-19 52-55 87-109 106-79-21-143-61-193-118 20-39 50-71 91-98z' },
+    { name: 'Persia', color: '#16a085', label: [779, 290], d: 'M724 151c61 36 111 87 150 154v155c-70-3-126-25-167-66 31-70 37-151 17-243z' }
   ];
-  $('#mapRegions').innerHTML = regions.map(([name, x, y, w, h, color]) => `
-    <g tabindex="0" role="button" aria-label="Filter by ${name}" class="region" data-region="${name}">
-      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="18" fill="${color}" />
-      <text x="${x + w / 2}" y="${y + h / 2}" dominant-baseline="middle" text-anchor="middle">${name}</text>
+  $('#mapRegions').innerHTML = regions.map((region) => `
+    <g tabindex="0" role="button" aria-label="Filter by ${region.name}" class="region" data-region="${region.name}">
+      <path d="${region.d}" fill="${region.color}" />
+      <text x="${region.label[0]}" y="${region.label[1]}" text-anchor="middle">${region.name}</text>
     </g>
   `).join('');
-  $('#mapLegend').innerHTML = regions.map(([name,, , , , color]) => `<button data-region="${name}"><span style="background:${color}"></span>${name}</button>`).join('');
+  $('#mapLegend').innerHTML = regions.map((region) => `<button data-region="${region.name}"><span style="background:${region.color}"></span>${region.name}</button>`).join('');
   $$('[data-region]').forEach((el) => el.addEventListener('click', () => {
     $('#search').value = el.dataset.region;
     renderCards();
