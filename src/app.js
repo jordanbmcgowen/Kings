@@ -100,7 +100,29 @@ function renderTimeline(list) {
     const width = Math.max(((king.end - king.start) / (max - min)) * 82, 2.5);
     return `<button class="timeline-row" data-name="${king.name}"><span>${king.name}</span><i class="${king.status}" style="left:${left}%;width:${width}%"></i><small>${formatYears(king)}</small></button>`;
   }).join('');
-  $$('.timeline-row').forEach((row) => row.addEventListener('click', () => selectKing(row.dataset.name)));
+  $$('.timeline-row').forEach((row) => row.addEventListener('click', () => openTimelinePopup(byName(row.dataset.name))));
+}
+
+function openTimelinePopup(king) {
+  if (!king) return;
+  state.selected = king.name;
+  renderCards();
+  $('#timelinePopupContent').innerHTML = `
+    <div class="detail-top popup-top">
+      <span class="avatar large">${king.name.slice(0, 1)}</span>
+      <div><span class="pill ${king.status}">${king.status}</span><h2>${king.name}</h2></div>
+    </div>
+    <p class="summary">${king.summary}</p>
+    <div class="popup-facts">
+      <div><strong>Reign</strong><span>${formatYears(king)}</span></div>
+      <div><strong>Kingdom</strong><span>${king.kingdom}</span></div>
+      <div><strong>Capital</strong><span>${king.capital}</span></div>
+      <div><strong>Bible references</strong><span>${king.refs}</span></div>
+    </div>
+    <section class="scripture"><h3>Remember this</h3><p>${king.takeaway}</p></section>
+    <div class="detail-actions"><button class="button primary" value="close">Got it</button></div>
+  `;
+  $('#timelineDialog').showModal();
 }
 
 function renderMap() {
