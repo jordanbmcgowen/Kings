@@ -150,9 +150,9 @@ function renderMap() {
     $('#accurateMap').innerHTML = '<p class="empty">Map tiles could not load. Use the region buttons to filter the explorer.</p>';
   } else {
     const map = L.map('accurateMap', { scrollWheelZoom: false }).setView([32.2, 38.5], 5);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 10,
-      attribution: '&copy; OpenStreetMap contributors'
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 12,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Garmin, FAO, NOAA, USGS, OpenStreetMap contributors, and the GIS User Community'
     }).addTo(map);
     regions.forEach((region) => {
       L.circle(region.center, {
