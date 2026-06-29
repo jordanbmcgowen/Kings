@@ -40,7 +40,7 @@ function renderCards() {
   $('#resultCount').textContent = `${list.length} shown`;
   $('#cards').innerHTML = list.map((king) => `
     <button class="king-card ${state.selected === king.name ? 'active' : ''}" data-name="${king.name}">
-      <span class="avatar">${king.name.slice(0, 1)}</span>
+      <span class="avatar">${kingArt(king)}</span>
       <span class="pill ${king.status}">${king.status}</span>
       <h3>${king.name}</h3>
       <p class="meta">${king.kingdom} • ${formatYears(king)}</p>
@@ -69,7 +69,7 @@ function renderDetail() {
   const king = byName(state.selected) || filteredKings()[0] || KING_DATA[0];
   $('#detail').innerHTML = `
     <div class="detail-top">
-      <span class="avatar large">${king.name.slice(0, 1)}</span>
+      <span class="avatar large">${kingArt(king)}</span>
       <div><span class="pill ${king.status}">${king.status}</span><h2>${king.name}</h2></div>
     </div>
     <p class="summary">${king.summary}</p>
@@ -109,7 +109,7 @@ function openTimelinePopup(king) {
   renderCards();
   $('#timelinePopupContent').innerHTML = `
     <div class="detail-top popup-top">
-      <span class="avatar large">${king.name.slice(0, 1)}</span>
+      <span class="avatar large">${kingArt(king)}</span>
       <div><span class="pill ${king.status}">${king.status}</span><h2>${king.name}</h2></div>
     </div>
     <p class="summary">${king.summary}</p>
